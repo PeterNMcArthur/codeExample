@@ -1,0 +1,26 @@
+{
+  "name": "codeexample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/indexSpec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PeterNMcArthur/codeExample.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PeterNMcArthur/codeExample/issues"
+  },
+  "homepage": "https://github.com/PeterNMcArthur/codeExample#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.0"
+  },
+  "dependencies": {
+    "ramda": "^0.21.0"
+  }
+}
