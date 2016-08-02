@@ -25,6 +25,7 @@ const removeUnpopulatedProps = data => {
 }
 
 module.exports = {
+	findUnpopulated,
   removeUnpopulatedProps
 }
 

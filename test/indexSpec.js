@@ -1,12 +1,59 @@
-"use strict"
+"use strict" 
 const mocha = require("mocha");
 const expect = require("chai").expect;
 const fs = require("fs");
 const path = require("path");
 const stripUnwatedProperties = require(path.join(__dirname, "../index"))
 
-describe("stripUnwatedProperties", function() {
+describe("stripUnwatedProperties", () => {
 
+	describe("findUnpopulated", () => {
+
+		it("will return true the the prop is type; array, object, number or bool", () => {
+		
+			let obj = {
+				array: [],
+				obj: {},
+				number: 12,
+				bool: true
+			}
+
+			expect(stripUnwatedProperties.findUnpopulated(obj.array)).to.be.ok
+			expect(stripUnwatedProperties.findUnpopulated(obj.obj)).to.be.ok
+			expect(stripUnwatedProperties.findUnpopulated(obj.number)).to.be.ok
+			expect(stripUnwatedProperties.findUnpopulated(obj.bool)).to.be.ok
+
+		})
+
+		it("will return true is the string doesn't match the RegEx", () => {
+
+			let obj = {
+				smallString: "esrsersr",
+				largeString: "To go on account chandler rope's end yard warp squiffy mizzen come about walk the plank hail-shot. List scourge of the seven seas draught Gold Road chantey blow the man down parley heave to clap of thunder keelhaul. Parley chase guns hardtack trysail Letter of Marque matey gaff topsail lass grog."
+			}
+
+			expect(stripUnwatedProperties.findUnpopulated(obj.smallString)).to.be.ok
+			expect(stripUnwatedProperties.findUnpopulated(obj.largeString)).to.be.ok
+
+		})
+
+		it("will return false if the prop matches the RegEx", () => {
+
+			let obj = {
+				match1: "xf4l362lp7dpyi0xtenq32rf",
+				match2:	"apay4q0lcxncdp7yg0f6fdv7",
+				match3: "wjztmzknv11dhy6yd6o43d9f",
+				match4: "40hls5z9cdwwwpyxt74asd3c"
+			}
+
+			expect(stripUnwatedProperties.findUnpopulated(obj.match1)).to.not.be.ok
+			expect(stripUnwatedProperties.findUnpopulated(obj.match2)).to.not.be.ok
+			expect(stripUnwatedProperties.findUnpopulated(obj.match3)).to.not.be.ok
+			expect(stripUnwatedProperties.findUnpopulated(obj.match4)).to.not.be.ok
+
+		})
+
+	})
 
   describe("removeUnpopulatedProps()", () => {
 let sampleData;
